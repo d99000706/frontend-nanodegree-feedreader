@@ -7,6 +7,7 @@
  */
 
 // The names and URLs to all of the feeds we'd like available.
+
 var allFeeds = [
     {
         name: 'Udacity Blog',
@@ -75,7 +76,8 @@ function loadFeed(id, cb) {
         }
 
         if (cb) {
-            cb();
+            // pass the feed entries list back to the jasmine testing callback
+            cb(entries);
         }
     });
 }
@@ -119,6 +121,7 @@ $(function() {
 
         $('body').addClass('menu-hidden');
         loadFeed(item.data('id'));
+        
         return false;
     });
 
@@ -127,5 +130,6 @@ $(function() {
      */
     menuIcon.on('click', function() {
         $('body').toggleClass('menu-hidden');
+        
     });
 }());
