@@ -59,7 +59,6 @@ function loadFeed(id, cb) {
             var container = $('.feed'),
                 title = $('.header-title'),
                 entries = result.feed.entries,
-                entriesLen = entries.length,
                 entryTemplate = Handlebars.compile($('.tpl-entry').html());
 
             title.html(feedName);   // Set the header text
@@ -76,8 +75,8 @@ function loadFeed(id, cb) {
         }
 
         if (cb) {
-            // pass the feed entries list back to the jasmine testing callback
-            cb(entries);
+            // pass the feed entries list back to the jasmine testing callback for evaluation
+            cb(result.feed.entries);
         }
     });
 }
@@ -93,8 +92,7 @@ google.setOnLoadCallback(init);
  * until the DOM is ready.
  */
 $(function() {
-    var container = $('.feed'),
-        feedList = $('.feed-list'),
+    var feedList = $('.feed-list'),
         feedItemTemplate = Handlebars.compile($('.tpl-feed-list-item').html()),
         feedId = 0,
         menuIcon = $('.menu-icon-link');
